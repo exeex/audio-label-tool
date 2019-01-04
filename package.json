@@ -1,0 +1,11 @@
+{
+  "name": "ggg",
+  "version": "1.0.0",
+  "description": "gg",
+  "main": "main.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "author": "cswu",
+  "license": "MIT"
+}
