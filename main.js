@@ -1,25 +1,14 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
+const {ipcMain} = require('electron')
 let PythonShell = require('python-shell').PythonShell;
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
 let opt = {mode: 'json', pythonOptions: ['-u'], pythonPath: 'python', encoding: 'utf8'}
-
-let pyshell = new PythonShell('lyric.py', opt);
-pyshell.on('message', function (message) {
-    // received a message sent from the Python script (a simple "print" statement)
-    console.log(message['data'][0]);
-    let json = JSON.stringify(message);
-    let fs = require('fs');
-    fs.writeFile('myjsonfile.json', json, 'utf8', function () {
-
-    });
-});
-
-pyshell.end()
 
 
 function createWindow() {
@@ -41,14 +30,24 @@ function createWindow() {
     })
 
 
-// end the input stream and allow the process to exit
-//     pyshell.end(function (err, code, signal) {
-//         if (err) throw err;
-//         console.log('The exit code was: ' + code);
-//         console.log('The exit signal was: ' + signal);
-//         console.log('finished');
-//         console.log('finished');
-//     });
+    ipcMain.on('index-page-ready', (event, status) => {
+        let pyshell = new PythonShell('lyric.py', opt);
+        pyshell.on('message', function (message) {
+            // received a message sent from the Python script (a simple "print" statement)
+            // console.log(message['data'][0]);
+            mainWindow.webContents.send('ggg', message)
+            console.log("gg")
+            // let fs = require('fs');
+            // fs.writeFile('myjsonfile.json', json, 'utf8', function () {
+            //
+            // });
+        });
+        pyshell.end()
+
+    })
+
+
+
 }
 
 // This method will be called when Electron has finished
