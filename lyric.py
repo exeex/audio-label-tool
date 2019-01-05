@@ -1,9 +1,9 @@
 import re
 import json
 
+
 # TODO: 處理一個標籤塞兩個字的case
 # TODO: 修改self.seq後，存檔的功能
-
 
 class Lyric:
     def __init__(self, file):
@@ -22,7 +22,6 @@ class Lyric:
                     a list of tuple(start_time(ms),duration(ms),char)
                     ex.[(1329, 1700, '小'), (3029, 601, '幸'), (3630, 1003, '運')]
         """
-        # TODO: 兩種格式 判斷絕對時間還是相對時間
         lines = text.splitlines()
         seq = []
         time_offset = 0
@@ -71,6 +70,11 @@ class Lyric:
 
         return seq
 
+    def get_total_duration(self):
+        last_time = self.seq[-1][0]
+        last_duration = self.seq[-1][1]
+        return last_time + last_duration
+
     def get_lyric(self) -> object:
         lyric = ""
         for item in self.seq:
@@ -103,8 +107,11 @@ class Lyric:
 if __name__ == '__main__':
     import os
     import sys
+
     l = Lyric("test_data/a.zrce")
-    data = {"data":[s for s in l.seq]}
+    data = {"total_duration": l.get_total_duration(),
+            "data": [s for s in l.seq],
+            }
     # json.dump(data, f)pytho
     # f = open("ha.json",mode='wb')
     # f.write(json.dumps(data, ensure_ascii=False).encode('utf8'))
