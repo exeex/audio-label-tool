@@ -30,6 +30,7 @@
     "bootstrap": "^4.2.1",
     "bootstrap-vue": "^2.0.0-rc.11",
     "jquery": "^3.3.1",
+    "python-shell": "^1.0.7",
     "tether": "^1.4.5",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",

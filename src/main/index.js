@@ -1,7 +1,9 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import {app, BrowserWindow} from 'electron'
 
+const {ipcMain} = require('electron')
+let PythonShell = require('python-shell').PythonShell
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -11,6 +13,9 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 let mainWindow
+
+let opt = {mode: 'json', pythonOptions: ['-u'], pythonPath: 'python', encoding: 'utf8'}
+
 const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`
   : `file://${__dirname}/index.html`
@@ -29,6 +34,14 @@ function createWindow () {
 
   mainWindow.on('closed', () => {
     mainWindow = null
+  })
+
+  ipcMain.on('index-page-ready', (event, status) => {
+    let pyshell = new PythonShell('lyric.py', opt)
+    pyshell.on('message', function (message) {
+      mainWindow.webContents.send('load-lyric-done', message)
+    })
+    pyshell.end()
   })
 }
 
