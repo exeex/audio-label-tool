@@ -1,32 +1,95 @@
 <template>
-  <div id="wrapper">
-    <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
-    <main>
-      <div class="left-side">
-        <span class="title">
-          Welcome to your new project!
-        </span>
-        <system-information></system-information>
-      </div>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">App name</a>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Some Text</a>
+        </li>
+    </ul>
 
-      <div class="right-side">
-        <div class="doc">
-          <div class="title">Getting Started</div>
-          <p>
-            electron-vue comes packed with detailed documentation that covers everything from
-            internal configurations, using the project structure, building your application,
-            and so much more.
-          </p>
-          <button @click="open('https://simulatedgreg.gitbooks.io/electron-vue/content/')">Read the Docs</button><br><br>
-        </div>
-        <div class="doc">
-          <div class="title alt">Other Documentation</div>
-          <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
-          <button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</button>
-        </div>
-      </div>
-    </main>
-  </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span data-feather="home"></span>
+                            Dashboard <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file"></span>
+                            Orders
+                        </a>
+                    </li>
+                </ul>
+
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Saved reports</span>
+                    <a class="d-flex align-items-center text-muted" href="#">
+                        <span data-feather="plus-circle"></span>
+                    </a>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Current month
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2">Dashboard</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <button class="btn btn-sm btn-outline-secondary">Share</button>
+                        <button class="btn btn-sm btn-outline-secondary">Export</button>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                        <span data-feather="calendar"></span>
+                        This week
+                    </button>
+                </div>
+            </div>
+
+            <div id="content">
+                <!--<script src="node_modules/d3/dist/d3.min.js"></script>-->
+                <!--<script src="node_modules/d3-selection-multi/build/d3-selection-multi.min.js"></script>-->
+                <!--<div class="timeseries" style="overflow-y:scroll"></div>-->
+                <!--<script src="render/scatter.js"></script>-->
+                <!--<script>-->
+                  <!--console.log('haha!')-->
+                  <!--const {ipcRenderer} = require('electron')-->
+                  <!--let lyric_data-->
+                  <!--ipcRenderer.on('load-lyric-done', (event, _lyric_data) => {-->
+                    <!--lyric_data = _lyric_data-->
+                    <!--console.log(lyric_data)       // 输出 "harttle born"-->
+                    <!--plot_scatter(lyric_data['data'], '.timeseries', lyric_data['total_duration'])-->
+                  <!--})-->
+
+                  <!--ipcRenderer.send('index-page-ready', 'ready')-->
+
+                  <!--// require('electron').ipcRenderer.on('ping', (event, message) => {-->
+                  <!--//     console.log(message) // Prints 'whoooooooh!'-->
+                  <!--// })-->
+
+                <!--</script>-->
+
+            </div>
+
+
+        </main>
+    </div>
+</div>
 </template>
 
 <script>
