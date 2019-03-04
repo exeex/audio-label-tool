@@ -1,10 +1,13 @@
 <template>
     <div>
-        <div class="title">Information</div>
+        <div class="title">
+            <button @click="upscale()">+</button>
+            <button @click="downscale">-</button>
+        </div>
         <div class="items">
             <div class="item">
                 <div class="value" v-for="item in lyricData.data">
-                    <word :scale-factor="scaleFactor" v-bind:word="item"></word>
+                    <word v-bind:scale-factor="scaleFactor" v-bind:word="item"></word>
                 </div>
             </div>
         </div>
@@ -19,6 +22,16 @@
     props: ['lyricData'],
     data: function () {
       return {scaleFactor: 0.2}
+    },
+    methods: {
+      upscale: function () {
+        this.scaleFactor = this.scaleFactor * 1.5
+        console.log(this.scaleFactor)
+      },
+      downscale: function () {
+        this.scaleFactor /= 1.5
+        console.log(this.scaleFactor)
+      }
     }
   }
 </script>
