@@ -1,24 +1,25 @@
 <template>
     <div>
-        <div class="title">Information</div>
-        <div class="items">
-            <div class="item">
-                <div class="value" v-for="item in lyricData.data">
-                    <word :scale-factor="scaleFactor" v-bind:word="item"></word>
-                </div>
-            </div>
-        </div>
+        <div class="value" v-bind:style="{ width: width}">{{ word[2] }}</div>
     </div>
 </template>
 
 <script>
-  import Word from './Lyric/Word'
-
   export default {
-    components: {Word},
-    props: ['lyricData'],
+    props: ['word', 'scaleFactor'],
     data: function () {
-      return {scaleFactor: 0.2}
+      let width = this.scaleFactor * this.word[1]
+      return {width: `${width}px`}
+    },
+    watch: {
+      word: function (word) {
+        let width = this.scaleFactor * word[1]
+        this.width = `${width}px`
+      },
+      scaleFactor: function (word) {
+        let width = this.scaleFactor * word[1]
+        this.width = `${width}px`
+      }
     }
   }
 </script>
