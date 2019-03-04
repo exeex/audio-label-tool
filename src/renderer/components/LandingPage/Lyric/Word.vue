@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="value" v-bind:style="{ width: getWidth}">{{ word[2] }}</div>
+        <div class="value" v-bind:style="{ width: width}">{{ word[2] }}</div>
     </div>
 </template>
 
@@ -20,11 +20,6 @@
         let width = this.scaleFactor * this.word[1]
         this.width = `${width}px`
         // console.log(this.word[1])
-      }
-    },
-    computed: {
-      getWidth: function () {
-        return this.width
       }
     }
   }
