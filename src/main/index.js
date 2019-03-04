@@ -14,7 +14,13 @@ if (process.env.NODE_ENV !== 'development') {
 
 let mainWindow
 
-let opt = {mode: 'json', pythonOptions: ['-u'], pythonPath: 'python', encoding: 'utf8'}
+let opt = {
+  mode: 'json',
+  pythonOptions: ['-u'],
+  pythonPath: 'python',
+  scriptPath: './',
+  encoding: 'utf8'
+}
 
 const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`

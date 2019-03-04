@@ -64,12 +64,12 @@
                         </div>
 
                         <div id="content">
-                            <div class="timeseries" style="overflow-y:scroll"></div>
+                            <div class="timeseries" style="overflow-y:scroll">
+                                <lyric v-bind:lyric-data="lyricData"></lyric>
+                            </div>
 
                         </div>
                     </div>
-
-
                 </main>
             </div>
         </div>
@@ -77,28 +77,27 @@
 </template>
 
 <script>
-  import SystemInformation from './LandingPage/SystemInformation'
-
-  console.log('haha!')
+  import Lyric from './LandingPage/Lyric'
   const {ipcRenderer} = require('electron')
-  let lyricData
-  ipcRenderer.on('load-lyric-done', (event, _lyricData) => {
-    lyricData = _lyricData
-    console.log(lyricData) // 输出 "harttle born"
-  })
 
-  ipcRenderer.send('index-page-ready', 'ready')
-
-  // require('electron').ipcRenderer.on('ping', (event, message) => {
-  //     console.log(message) // Prints 'whoooooooh!'
-  // })
-  export default {
+  export default{
     name: 'landing-page',
-    components: {SystemInformation},
+    components: {Lyric: Lyric},
+    data: function () {
+      return {lyricData: ''}
+    },
     methods: {
       open (link) {
         this.$electron.shell.openExternal(link)
       }
+    },
+    mounted () {
+      ipcRenderer.on('load-lyric-done', (event, lyricData) => {
+        this.lyricData = lyricData
+        console.log(lyricData) // 输出 "harttle born"
+      })
+
+      ipcRenderer.send('index-page-ready', 'ready')
     }
   }
 </script>

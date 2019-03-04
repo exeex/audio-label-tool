@@ -8,7 +8,7 @@ import json
 class Lyric:
     def __init__(self, file):
         """
-        create a Lyric object by open a lyric file
+        create a Lyric object by open a lyricData file
         :param file: file_path
         """
         with open(file, 'r', encoding="utf-8") as f:
@@ -111,6 +111,8 @@ if __name__ == '__main__':
     l = Lyric("test_data/a.zrce")
     data = {"total_duration": l.get_total_duration(),
             "data": [s for s in l.seq],
+            "dtype": "lyric",
+            "file": "test_data/a.zrce"
             }
     # json.dump(data, f)pytho
     # f = open("ha.json",mode='wb')
