@@ -46,6 +46,7 @@ function createWindow () {
     let pyshell = new PythonShell('lyric.py', opt)
     pyshell.on('message', function (message) {
       mainWindow.webContents.send('load-lyric-done', message)
+      console.log('haha')
     })
     pyshell.end()
   })
