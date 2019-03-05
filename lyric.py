@@ -86,7 +86,7 @@ class Lyric:
 
             except IndexError:
                 continue
-            seq.append((line_start, line_duration, NEW_LINE, NO_CHAR_VOCAL_FILE, DEFAULT_CHAR_VOCAL_FILE))
+            # seq.append((line_start, line_duration, NEW_LINE, NO_CHAR_VOCAL_FILE, DEFAULT_CHAR_VOCAL_FILE))
             seq.extend(line_seq)
 
         return seq
