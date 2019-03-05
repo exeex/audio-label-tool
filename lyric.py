@@ -18,7 +18,7 @@ class Lyric:
         :param file: file_path
         """
 
-        if os.path.splitext(file)[-1] == "json":
+        if os.path.splitext(file)[-1] == ".json":
             with open(file, 'r', encoding="utf-8") as f:
                 self.data = json.load(f)
                 self.seq = self.data['data']
@@ -142,7 +142,7 @@ class Lyric:
 if __name__ == '__main__':
     import sys
 
-    l = Lyric("test_data/a.zrce")
+    l = Lyric("test_data/a.json")
     # l.to_lyrc()
     # print(l.to_zrce_string())
     # sys.stdout.buffer.write(l.to_zrce_string().encode('utf8'))
