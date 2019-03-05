@@ -3,6 +3,7 @@
         <div class="title">
             <button @click="upscale()">+</button>
             <button @click="downscale">-</button>
+            <button @click="print">print</button>
         </div>
         <div class="items">
             <div class="item">
@@ -31,6 +32,9 @@
       downscale: function () {
         this.scaleFactor /= 1.5
         console.log(this.scaleFactor)
+      },
+      print: function () {
+        console.log(this.lyricData)
       }
     }
   }
