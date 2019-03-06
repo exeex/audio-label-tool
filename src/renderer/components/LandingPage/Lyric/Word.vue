@@ -1,9 +1,10 @@
 <template>
     <div class="field">
         <div class="value field-value" v-show="!showField('word')" v-bind:style="{ width: width}"
-             @click="focusField('word')">{{ word[2] }}
+             @dblclick="focusField('word')" @blur="blurField">{{ word[2] }}
         </div>
         <input class="field-value form-control"
+               ref="inputBox"
                type="text"
                v-bind:style="{ width: width}"
                v-show="showField('word')"
@@ -23,6 +24,7 @@
     methods: {
       focusField (name) {
         this.editField = name + this.word[2]
+        this.$nextTick(() => this.$refs.inputBox.focus())
       },
       blurField () {
         this.editField = ''
